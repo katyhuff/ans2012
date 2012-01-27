@@ -1,0 +1,86 @@
+%        File: ans2012.tex
+%     Created: Wednesday, January 25, 2012
+
+\documentclass{anstrans}
+%% To use the glossaries acronym package, you'll need to define any acronyms you intend to 
+%% use. You can define acronyms with \newacronym{label}[acronym]{written out form}
+%% To refer to them in the text use \gls{label}
+\usepackage[acronym,toc]{glossaries}
+\include{acros}
+\makeglossaries
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Thermal Calibration of an Analytical Repository Model using SINDA}
+\author{Kathryn D.~Huff, Theodore H.~Bauer}
+
+%% uncomment these next five only if using anstrans
+\institute{Department of Nuclear Engineering \& Engineering Physics, University 
+of Wisconsin, Madison, WI, 53706\\
+Nuclear Engineering Division, Argonne National Laboratory, Argonne, IL, 60439}
+\email{khuff@cae.wisc.edu \\
+thbauer@anl.gov}
+\usepackage{graphicx}
+\usepackage{booktabs} % nice rules for tables
+\usepackage{microtype} % if using PDF
+\newcommand{\units}[1] {\:\text{#1}}%
+\newcommand{\SN}{S$_N$}%{S$_\text{N}$}%{$S_N$}%
+
+
+\date{January 27, 2012}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+This work proposes a simple calibrated thermal resistance model to improve the 
+accuracy of a rapid homogenous medium analytical transient heat transfer 
+solution model. The model to be calibrated, created by \gls{LLNL}, is a solution 
+of superimposed line and point source solutions representing a generic geologic 
+repository with a gridlike waste package layout in a homogeneous medium. The 
+auxillary thermal resistance model improves the model's estimation of the peak 
+temperature and peak time. The calibration of this model is undertaken as part 
+of a benchmarking effort against a geometrically detailed generic thermal 
+repository model based on \gls{SINDAG} software.
+
+Calibrated an analytic thermal repository model from (\gls{LLNL}) model using a 
+thermal resistance model and determined appropriate coefficients from 
+\gls{SINDAG} calculations. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Description of Work}
+
+A benchmarking effort between the analytical \gls{LLNL} model and the 
+\gls{SINDAG} \gls{ANL} model revealed a discrepancy between them. The time of 
+peak heat arrived sooner and the value of the peak temperature was lower in the 
+homogeneous medium \gls{LLNL} model than in the \gls{SINDAG} model. 
+
+The SINDA model is based on a lumped parameter construction that models parts of 
+the repository in detail. 
+
+The LLNL model
+
+Calibration was necessary.
+
+Calibration occured for geologies of interest.  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results and Analysis}
+
+The calibration was an improvement on the benchmarking.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
+
+We recommend that for this and other analytical models of this nature, the 
+additional step will improve results near the area of interest.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\nocite{<+ +>}
+\bibliographystyle{ans}
+\bibliography{bibliography}
+\end{document}
+
+
