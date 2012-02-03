@@ -16,8 +16,10 @@ Transfer Model}
 \author{Kathryn D.~Huff$^1$, Theodore H.~Bauer$^2$}
 
 %% uncomment these next five only if using anstrans
-\institute{$^1$Nuclear Engineering \& Engineering Physics Dept., University of Wisconsin, Madison, WI, 53706\\
-$^2$Nuclear Engineering Division, Argonne National Laboratory, Argonne, IL, 60439}
+\institute{$^1$Nuclear Engineering \& Engineering Physics Dept., University of 
+Wisconsin, Madison, WI, 53706\\
+$^2$Nuclear Engineering Division, Argonne National Laboratory, Argonne, IL, 
+60439}
 \email{$^1$khuff@cae.wisc.edu \& $^2$thbauer@anl.gov}
 \usepackage{graphicx}
 \usepackage{booktabs} % nice rules for tables
@@ -40,33 +42,43 @@ component to improve their agreement. The auxillary thermal resistance component
 improves the accuracy of the rapid analytic model by calibration against
 the numeric model. 
 
-The analytic model to be calibrated, created by \gls{LLNL}, is a solution of
-superimposed line and point source solutions representing a generic geology 
-nuclear repository. The auxillary thermal resistance model improves the model's 
-estimation of the peak repository temperature as well as the timing of the peak 
-temperature. The calibration of this model is undertaken as part of a 
-benchmarking effort against a geometrically detailed generic thermal nuclear 
-repository thermal model developed at \gls{ANL} and based on \gls{SINDAG} 
-software.
+The analytic model to be calibrated, created by \gls{LLNL}, calulates the 
+superposition of line and point source solutions representing a generic geology 
+nuclear repository. The auxillary thermal resistance calibration component 
+suggested in this work improves the analytical model's estimation of the peak 
+repository temperature as well as the timing of the peak temperature. The 
+calibration was undertaken as part of a benchmarking effort against a 
+geometrically detailed generic thermal nuclear repository thermal model 
+developed at \gls{ANL} and based on the \gls{SINDAG} software\cite{SINDAG}.
 
 %% RESULTS HERE %%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Description of Work}
-
-A benchmarking effort between the analytical \gls{LLNL} model and the 
-\gls{SINDAG} \gls{ANL} model revealed a discrepancy between them. The time of 
-peak heat arrived sooner and the value of the peak temperature was lower in the 
-homogeneous medium \gls{LLNL} model than in the \gls{SINDAG} model. 
-
-
 
 %% The LLNL model
 
 \section{Analytic LLNL MathCAD Model}
 
-This model, created at \gls{LLNL} for the \gls{UFD} campaign, is written in a 
-MathCAD.
+This model, created at \gls{LLNL} for the \gls{UFD} campaign, is written in 
+MathCAD and employs an analytical model from Carslaw and Jaeger \cite{carslaw}.
+
+\subsection{Geometry}
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{llnlConcept.eps}
+  \end{center}
+  \caption{Vertical, horizontal, alcove, and borehole emplacement layouts can be 
+  represented by a line of point sources and adjacent line sources 
+  \cite{sutton_investigations_2011}.}
+  \label{fig:llnl}
+\end{figure}
+
+The central package is represented by the finite line source solution 
+\eqref{finiteline}. Adjacent packages within the central tunnel are represented 
+by the point source solution \eqref{point} Finally, the model uses infinite line 
+source solutions (\eqref{infline} to represent adjacent disposal tunnels.
+
 
 \subsection{MathCAD Engine}
 
@@ -87,22 +99,14 @@ conceptualized to be a single `internal' calculation unit.  Since the thermal
 mass of the \gls{EBS} is small in comparison to the thermal mass of the host 
 rock, it may be treated as quasi-steady state. Thus, the transient state of the 
 transient temperature at the host wall can be found with a 
-MathCAD solution of the superposition of integral source solutions
+MathCAD solution of the superposition of integral solutions
+representing point, finite line, and infinite line source solutions in 
+infinite homogeneous media,
 
 \begin{align}
   T_{point}(t,r) &= \frac{1}{8\rho C_p (\pi 
-  -\alpha)^{\frac{3}{2}}}\bigintsss_0^{-t}\!\frac{q(t')}{(t-t')^{\frac{3}{2}}}e^{\frac{-r^2}{4\alpha(t-t')}}\,\mathrm{dt'}
+  -\alpha)^{\frac{3}{2}}}\bigintsss_0^{-t}\!\frac{q(t')}{(t-t')^{\frac{3}{2}}}e^{\frac{-r^2}{4\alpha(t-t')}}\,\mathrm{dt'}\\
   \label{point}
-  \intertext{where}
-  \rho &= ~~\mbox{material density }[kg/m^3]\nonumber\\
-  C_p &= ~~\mbox{specific heat capacity}[]\nonumber\\
-  \alpha &= ~~\mbox{thermal diffusivity } [J/m*K]\nonumber\\
-  q(t') &= ~~\mbox{linear heat source ? } [W/m]\nonumber\\
-  r^2 &= (x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2\nonumber\\
-  (x_0,y_0,z_0) &= ~~\mbox{origin}\nonumber
-\end{align}
-
-\begin{align}
   T_{line}(t,x,y,z) &= \frac{1}{8\pi K_{th}} 
   \bigintsss_0^t\!\frac{q_L(t')}{t-t'}e^{ \frac{-\left(x^2 + z^2\right)}{4\alpha 
   (t-t')} }\nonumber\\ 
@@ -111,15 +115,19 @@ MathCAD solution of the superposition of integral source solutions
   \right)}{\sqrt{\alpha(t-t')}}  \right]} 
   - \erf{\left[ \frac{1}{2} \frac{\left( y - \frac{L}{2} 
   \right)}{\sqrt{\alpha(t-t')}}  \right]} 
-  \right]\,\mathrm{dt'}
+  \right]\,\mathrm{dt'}\\
   \label{line}
-\end{align}
-
-\begin{align}
   T_{\infty line}(t,x,z) &= \frac{1}{4\pi K_{th}} 
   \bigintsss_0^t\!\frac{q_L(t')}{t-t'}e^{ \frac{-\left(x^2 + z^2\right)}{4\alpha 
   (t-t')} }
+  \intertext{where}
   \label{infline}
+  \rho &= ~~\mbox{material density }[kg/m^3]\nonumber\\
+  C_p &= ~~\mbox{specific heat capacity}[]\nonumber\\
+  \alpha &= ~~\mbox{thermal diffusivity } [J/m*K]\nonumber\\
+  q(t') &= ~~\mbox{linear heat source ? } [W/m]\nonumber\\
+  r^2 &= (x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2\nonumber\\
+  (x_0,y_0,z_0) &= ~~\mbox{origin}\nonumber
 \end{align}
 
 Superimposed point and line source solutions allow for a notion of the 
@@ -136,25 +144,12 @@ heat evolution over  the lifetime of the repository. This model seeks to inform
 heat limited waste capacity calculations for each lithology, for many waste 
 package loading densities, and for many fuel cycle options.  
 
-% Geometry
-
-\subsection{Geometry}
-
-\begin{figure}[h!]
-  \begin{center}
-    \includegraphics[width=0.5\textwidth]{llnlConcept.eps}
-  \end{center}
-  \caption{Vertical, horizontal, alcove, and borehole emplacement layouts can be 
-  represented by a line of point sources and adjacent line sources 
-  \cite{sutton_investigations_2011}.}
-  \label{fig:llnl}
-\end{figure}
-
 %% The ANL model
+
+\section{Numerical ANL Model}
 
 The SINDA model is based on a lumped parameter construction that models parts of 
 the repository in detail. 
-\section{Numerical ANL Model}
 
 A similar model was created by the UFD team at \gls{ANL} using the \gls{SINDAG} 
 heat transport framework employs a lumped parameter model. It was created in two  
@@ -191,7 +186,7 @@ is solved for with an optimization loop within this model.
 
 \begin{figure}[htbp!]
   \begin{center}
-    \includegraphics[width=0.4\textwidth]{./sindageom.eps}
+    \includegraphics[width=0.5\textwidth]{./sindageom.eps}
   \end{center}
   \caption{The geometry of the thermal model can be adjusted in two dimensions, 
   altering the tunnel spacing and the vertical distance from the aquifer.}
@@ -311,6 +306,26 @@ Calibration occured for geologies of interest.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Description of the Actual Work}
+
+\subsection{Benchmarking}
+
+A benchmarking effort between the analytical \gls{LLNL} model and the 
+\gls{SINDAG} \gls{ANL} model revealed a discrepancy between them. The time of 
+peak heat arrived sooner and the value of the peak temperature was lower in the 
+homogeneous medium \gls{LLNL} model than in the \gls{SINDAG} model. 
+
+% Cases Run
+
+% Summary
+
+% Theory
+
+
+\subsection{Calibration}
+
 \section{Results and Analysis}
 
 %% Results
