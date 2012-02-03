@@ -25,6 +25,7 @@ $^2$Nuclear Engineering Division, Argonne National Laboratory, Argonne, IL, 6043
 \usepackage{bigints}
 \newcommand{\units}[1] {\:\text{#1}}%
 \newcommand{\SN}{S$_N$}%{S$_\text{N}$}%{$S_N$}%
+\DeclareMathOperator{\erf}{erf}
 
 
 \date{January 27, 2012}
@@ -102,17 +103,23 @@ MathCAD solution of the superposition of integral source solutions
 \end{align}
 
 \begin{align}
-  T_{line}(t,x,y,z) &= \frac{1}{8\rho C_p (\pi -\alpha)^{\frac{3}{2}}} \nonumber\\
-  &\cdot\bigintsss_0^t\!\frac{q_L(t')}{t-t'}d^{ \frac{-\left(x^2 + 
-  z^2\right)}{4\alpha (t-t')} }\nonumber\\ 
-  &\cdot \left[ 
-  erf\left[ \frac{1}{2} \frac{\left( y + \frac{L}{2} 
-  \right)}{\sqrt{\alpha(t-t')}}  \right] 
-  - erf\left[ \frac{1}{2} \frac{\left( y - \frac{L}{2} 
-  \right)}{\sqrt{\alpha(t-t')}}  \right] 
-  
+  T_{line}(t,x,y,z) &= \frac{1}{8\pi K_{th}} 
+  \bigintsss_0^t\!\frac{q_L(t')}{t-t'}e^{ \frac{-\left(x^2 + z^2\right)}{4\alpha 
+  (t-t')} }\nonumber\\ 
+  &\cdot\left[ 
+  \erf{\left[ \frac{1}{2} \frac{\left( y + \frac{L}{2} 
+  \right)}{\sqrt{\alpha(t-t')}}  \right]} 
+  - \erf{\left[ \frac{1}{2} \frac{\left( y - \frac{L}{2} 
+  \right)}{\sqrt{\alpha(t-t')}}  \right]} 
   \right]\,\mathrm{dt'}
   \label{line}
+\end{align}
+
+\begin{align}
+  T_{\infty line}(t,x,z) &= \frac{1}{4\pi K_{th}} 
+  \bigintsss_0^t\!\frac{q_L(t')}{t-t'}e^{ \frac{-\left(x^2 + z^2\right)}{4\alpha 
+  (t-t')} }
+  \label{infline}
 \end{align}
 
 Superimposed point and line source solutions allow for a notion of the 
