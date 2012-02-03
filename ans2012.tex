@@ -57,10 +57,16 @@ developed at \gls{ANL} and based on the \gls{SINDAG} software\cite{SINDAG}.
 
 %% The LLNL model
 
-\section{Analytic LLNL MathCAD Model}
+\section{Analytical LLNL MathCAD Model}
 
-This model, created at \gls{LLNL} for the \gls{UFD} campaign, is written in 
-MathCAD and employs an analytical model from Carslaw and Jaeger \cite{carslaw}.
+This model, created at \gls{LLNL} for the \gls{UFD} campaign seeks to inform 
+heat limited waste capacity calculations for each lithology, for many waste 
+package loading densities, and for many fuel cycle options.  employs an 
+analytical model from Carslaw and Jaeger \cite{carslaw}.  This model It is 
+written in MathCAD, a proprietary mathematics solution environment that 
+facilitates rapid solution of analytic models \cite{MathCAD}. The integral solver in the 
+MathCAD toolset is the primary calculation engine for the LLNL thermal model, 
+which relies on superposition of integral solutions.  
 
 \subsection{Geometry}
 
@@ -74,20 +80,11 @@ MathCAD and employs an analytical model from Carslaw and Jaeger \cite{carslaw}.
   \label{fig:llnl}
 \end{figure}
 
-The central package is represented by the finite line source solution 
-\eqref{finiteline}. Adjacent packages within the central tunnel are represented 
-by the point source solution \eqref{point} Finally, the model uses infinite line 
-source solutions (\eqref{infline} to represent adjacent disposal tunnels.
-
-
-\subsection{MathCAD Engine}
-
-MathCAD is a proprietary mathematics solution environment that facilitates rapid 
-solution of analytic models. The integral solver in the MathCAD toolset is the 
-primary calculation engine for the LLNL thermal model, which relies on 
-superposition of integral solutions.
-
-% Equations
+In Figure \ref{fig:llnl}, the geometric layout of the analytical \gls{LLNL} 
+model is described. The central package is represented by the finite line source solution 
+\eqref{finiteline}, adjacent packages within the central tunnel are represented 
+by the point source solution \eqref{point}, and adjacent disposal tunnels are 
+represented by infinite line source solutions (\eqref{infline}.
 
 \subsection{Calculation Method}
 
@@ -100,13 +97,13 @@ mass of the \gls{EBS} is small in comparison to the thermal mass of the host
 rock, it may be treated as quasi-steady state. Thus, the transient state of the 
 transient temperature at the host wall can be found with a 
 MathCAD solution of the superposition of integral solutions
-representing point, finite line, and infinite line source solutions in 
-infinite homogeneous media,
+representingpoint, 
 
 \begin{align}
   T_{point}(t,r) &= \frac{1}{8\rho C_p (\pi 
   -\alpha)^{\frac{3}{2}}}\bigintsss_0^{-t}\!\frac{q(t')}{(t-t')^{\frac{3}{2}}}e^{\frac{-r^2}{4\alpha(t-t')}}\,\mathrm{dt'}\\
   \label{point}
+  \intertext{finite line,}
   T_{line}(t,x,y,z) &= \frac{1}{8\pi K_{th}} 
   \bigintsss_0^t\!\frac{q_L(t')}{t-t'}e^{ \frac{-\left(x^2 + z^2\right)}{4\alpha 
   (t-t')} }\nonumber\\ 
@@ -117,17 +114,20 @@ infinite homogeneous media,
   \right)}{\sqrt{\alpha(t-t')}}  \right]} 
   \right]\,\mathrm{dt'}\\
   \label{line}
+  \intertext{and infinite line source solutions}
   T_{\infty line}(t,x,z) &= \frac{1}{4\pi K_{th}} 
   \bigintsss_0^t\!\frac{q_L(t')}{t-t'}e^{ \frac{-\left(x^2 + z^2\right)}{4\alpha 
   (t-t')} }
-  \intertext{where}
+  \intertext{in infinite homogeneous media, where}
   \label{infline}
   \rho &= ~~\mbox{material density }[kg/m^3]\nonumber\\
   C_p &= ~~\mbox{specific heat capacity}[]\nonumber\\
   \alpha &= ~~\mbox{thermal diffusivity } [J/m*K]\nonumber\\
-  q(t') &= ~~\mbox{linear heat source ? } [W/m]\nonumber\\
+  q(t) &= ~~\mbox{point heat source} [W]\nonumber\\
+  q_L(t) &= ~~\mbox{linear heat source} [W/m]\nonumber\\
   r^2 &= (x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2\nonumber\\
-  (x_0,y_0,z_0) &= ~~\mbox{origin}\nonumber
+  \intertext{and}
+  (x_0,y_0,z_0) &= ~~\mbox{origin}.\nonumber
 \end{align}
 
 Superimposed point and line source solutions allow for a notion of the 
@@ -140,10 +140,7 @@ point in time for each layer surface, assuming an infinite line source
 \cite{hardin_generic_2011}.
 
 The process is then iterated with a one year resolution in order to arrive at a 
-heat evolution over  the lifetime of the repository. This model seeks to inform 
-heat limited waste capacity calculations for each lithology, for many waste 
-package loading densities, and for many fuel cycle options.  
-
+heat evolution over  the lifetime of the repository. 
 %% The ANL model
 
 \section{Numerical ANL Model}
@@ -347,7 +344,7 @@ additional step will improve results near the area of interest.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\nocite{<+ +>}
 \bibliographystyle{ans}
-\bibliography{ans2012}
+\bibliography{ans2012.bib}
 \end{document}
 
 
