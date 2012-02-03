@@ -13,16 +13,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Numerical Calibration of an Analytical Generic Nuclear Repository Heat 
 Transfer Model}
-\author{Kathryn D.~Huff, Theodore H.~Bauer}
+\author{Kathryn D.~Huff$^1$, Theodore H.~Bauer$^2$}
 
 %% uncomment these next five only if using anstrans
-\institute{Department of Nuclear Engineering \& Engineering Physics, University 
-of Wisconsin, Madison, WI, 53706\\
-Nuclear Engineering Division, Argonne National Laboratory, Argonne, IL, 60439}
-\email{khuff@cae.wisc.edu \& thbauer@anl.gov}
+\institute{$^1$Nuclear Engineering \& Engineering Physics Dept., University of Wisconsin, Madison, WI, 53706\\
+$^2$Nuclear Engineering Division, Argonne National Laboratory, Argonne, IL, 60439}
+\email{$^1$khuff@cae.wisc.edu \& $^2$thbauer@anl.gov}
 \usepackage{graphicx}
 \usepackage{booktabs} % nice rules for tables
 \usepackage{microtype} % if using PDF
+\usepackage{bigints}
 \newcommand{\units}[1] {\:\text{#1}}%
 \newcommand{\SN}{S$_N$}%{S$_\text{N}$}%{$S_N$}%
 
@@ -35,44 +35,258 @@ Nuclear Engineering Division, Argonne National Laboratory, Argonne, IL, 60439}
 
 This work describes a benchmarking procedure between two generic geology nuclear 
 repository heat transfer models and proposes an auxillary thermal resistance 
-component to improve their agreement. The auxillary thermal resistance 
-component improves the accuracy of the rapid analytic model by calibration against
+component to improve their agreement. The auxillary thermal resistance component 
+improves the accuracy of the rapid analytic model by calibration against
 the numeric model. 
 
 The analytic model to be calibrated, created by \gls{LLNL}, is a solution of
 superimposed line and point source solutions representing a generic geology 
 nuclear repository. The auxillary thermal resistance model improves the model's 
 estimation of the peak repository temperature as well as the timing of the peak 
-temperature. The calibration of this model is undertaken as part 
-of a benchmarking effort against a geometrically detailed generic thermal 
-nuclear repository thermal model developed at \gls{ANL} and based on 
-\gls{SINDAG} software.
+temperature. The calibration of this model is undertaken as part of a 
+benchmarking effort against a geometrically detailed generic thermal nuclear 
+repository thermal model developed at \gls{ANL} and based on \gls{SINDAG} 
+software.
+
+%% RESULTS HERE %%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Description of Work}
+\section{Description of Work}
 
 A benchmarking effort between the analytical \gls{LLNL} model and the 
 \gls{SINDAG} \gls{ANL} model revealed a discrepancy between them. The time of 
 peak heat arrived sooner and the value of the peak temperature was lower in the 
 homogeneous medium \gls{LLNL} model than in the \gls{SINDAG} model. 
 
+
+
+%% The LLNL model
+
+\section{Analytic LLNL MathCAD Model}
+
+This model, created at \gls{LLNL} for the \gls{UFD} campaign, is written in a 
+MathCAD.
+
+\subsection{MathCAD Engine}
+
+MathCAD is a proprietary mathematics solution environment that facilitates rapid 
+solution of analytic models. The integral solver in the MathCAD toolset is the 
+primary calculation engine for the LLNL thermal model, which relies on 
+superposition of integral solutions.
+
+% Equations
+
+\subsection{Calculation Method}
+
+The model consists of two conceptual regions, a external and internal to the 
+disposal tunnel wall.
+The external region is the host rock, and the second interior region is the 
+tunnel region representing the waste form, package, and buffer. These are 
+conceptualized to be a single `internal' calculation unit.  Since the thermal 
+mass of the \gls{EBS} is small in comparison to the thermal mass of the host 
+rock, it may be treated as quasi-steady state. Thus, the transient state of the 
+transient temperature at the host wall can be found with a 
+MathCAD solution of the superposition of integral source solutions
+
+\begin{align}
+  T_{point}(t,r) &= \frac{1}{8\rho C_p (\pi 
+  -\alpha)^{\frac{3}{2}}}\bigintsss_0^{-t}\!\frac{q(t')}{(t-t')^{\frac{3}{2}}}e^{\frac{-r^2}{4\alpha(t-t')}}\,\mathrm{dt'}
+  \label{point}
+  \intertext{where}
+  \rho &= ~~\mbox{material density }[kg/m^3]\nonumber\\
+  C_p &= ~~\mbox{specific heat capacity}[]\nonumber\\
+  \alpha &= ~~\mbox{thermal diffusivity } [J/m*K]\nonumber\\
+  q(t') &= ~~\mbox{linear heat source ? } [W/m]\nonumber\\
+  r^2 &= (x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2\nonumber\\
+  (x_0,y_0,z_0) &= ~~\mbox{origin}\nonumber
+\end{align}
+
+\begin{align}
+  T_{line}(t,x,y,z) &= \frac{1}{8\rho C_p (\pi -\alpha)^{\frac{3}{2}}} \nonumber\\
+  &\cdot\bigintsss_0^t\!\frac{q_L(t')}{t-t'}d^{ \frac{-\left(x^2 + z^2\right)}{4\alpha (t-t')} } 
+  \left[ erf\left[ \frac{1}{2} \frac{\left( y+\frac{L}{2} 
+  \right)}{\sqrt{\alpha(t-t')}}  \right] \right]\,\mathrm{dt'}
+  \label{line}
+\end{align}
+
+Superimposed point and line source solutions allow for a notion of the 
+repository layout to be modeled in the host rock. The solution of this equation 
+at the boundary of the EBS and the waste package is then treated as a boundary 
+condition for the heterogeneous steady state equation, 
+
+which calculates a resulting temperature gradient through the geometry at each 
+point in time for each layer surface, assuming an infinite line source 
+\cite{hardin_generic_2011}.
+
+The process is then iterated with a one year resolution in order to arrive at a 
+heat evolution over  the lifetime of the repository. This model seeks to inform 
+heat limited waste capacity calculations for each lithology, for many waste 
+package loading densities, and for many fuel cycle options.  
+
+% Geometry
+
+\subsection{Geometry}
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{llnlConcept.eps}
+  \end{center}
+  \caption{Vertical, horizontal, alcove, and borehole emplacement layouts can be 
+  represented by a line of point sources and adjacent line sources 
+  \cite{sutton_investigations_2011}.}
+  \label{fig:llnl}
+\end{figure}
+
+
+
+
+
+%% The ANL model
+
 The SINDA model is based on a lumped parameter construction that models parts of 
 the repository in detail. 
+\section{Numerical ANL Model}
 
-The LLNL model
-with a gridlike waste package layout in a homogeneous medium. 
+A similar model was created by the UFD team at \gls{ANL} using the \gls{SINDAG} 
+heat transport framework employs a lumped parameter model. It was created in two  
+difference geometric concepts, a single drift model and an infinite drift model.  
+For a given waste stream, tunnel radius, and geologic parameters (i.e.  thermal 
+conductivity, density, and specific heat capacity), the model is able to arrive  
+at the temperature at the tunnel wall and adjacent. It can be run with an 
+optimization loop to arrive at a minimal drift spacing for a given waste stream 
+in agreement with user input thermal limits, but in this benchmark. 
 
-Utilize coupled thermal models that separately address thermal behaviors at very 
-different “length scales”.
-Storage Unit Model: enclosed room, gallery, or tunnel that contains 
-heat-generating waste packages.  Unit may be externally cooled or ventilated.
-Host Rock Model: the repository’s surrounding host rock and its boundaries
+\subsection{SINDA{\textbackslash}G Engine}
 
-Modeling Assumptions:
-Host rock nodes are sized so that storage units account for only a small volume 
-fraction
-Temperature fields in storage units respond to changes in waste package decay 
-heat much more rapidly than those in surrounding host rock. 
+This model, created at Argonne National Lab  uses the \gls{SINDAG} lumped 
+capacitance solver.  
+
+\subsection{Calculation Method}
+
+The \gls{SINDAG} model uses a lumped parameter numerical model.
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{lumpedParam.eps}
+  \end{center}
+  \caption{The lumped parameter analogy used for heat transfer can be applied as 
+  a one dimensional approximation to the disposal system concept. }
+  \label{fig:lumpedParam}
+\end{figure}
+
+Originally created for optimal waste loading analysis of the \gls{YMR}, the 
+model is geometrically adjustable in two dimensions,  as is demonstrated in 
+Figure \ref{fig:sindageom}. The tunnel size is a fixed parameter in the model, 
+but the optimal drift spacing for a particular waste stream and package loading 
+is solved for with an optimization loop within this model.
+
+\begin{figure}[htbp!]
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{./sindageom.eps}
+  \end{center}
+  \caption{The geometry of the thermal model can be adjusted in two dimensions, 
+  altering the tunnel spacing and the vertical distance from the aquifer.}
+  \label{fig:sindageom}
+\end{figure}
+
+The \gls{SINDAG} lumped capacitance solver solves a thermal circuit, for which 
+conducting nodes may be of four types corresponding to the four modes of heat 
+transfer. Nodes are connected by conduction, convection, radiation, and mass 
+flow heat transfer links. As discussed in section \ref{sec:lumpedparam}, these 
+are represented by
+
+\begin{align}
+  R_{cond} &= \frac{L}{k A}\\
+  R_{conv} &= \frac{1}{h A}\\
+  R_{mf}  &= \frac{1}{\dot{m}c_p}\\
+  R_{rad}  &= \frac{1}{\sigma F_{ij}A\left[ T_i + T_A + T_j + T_A 
+  \right]\left[(T_i+T_A)^2+(T_j+T_A)^2\right]}
+  \intertext{where}
+  k&= ~~\mbox{thermal conductivity}[W\cdot m^{-1}\cdot K^{-1}]\nonumber\\
+  A&= ~~\mbox{area} [m^2]\nonumber\\
+  c_p&=~~\mbox{specific heat capacity} [J\cdot K^{-1}]\nonumber  \\
+  h&= ~~\mbox{heat transfer coefficient}[W\cdot m^{-1} \cdot K^{-1}\nonumber \\
+  \dot{m}&= ~~\mbox{mass transfer rate}[kg\cdot s^{-1}]\nonumber \\
+  T_i&= ~~\mbox{lump temperature} [^{\circ}C] \nonumber\\
+  T_A&= ~~\mbox{absolute temperature} [^{\circ}C] \nonumber\\
+  F_{ij}&= ~~\mbox{radiation interchange factor} [-] .\nonumber
+\end{align}
+
+With these representations of thermal resistance, a lumped parameter model will 
+require an analysis that determines the appropriate length scale for the lumped 
+parameter approximation.
+
+Given one or more heat constraints, the \gls{ANL}  model  optimizes spatial 
+waste loading in order to meet those constraints with maximal waste loading. For 
+example, given a constraint at the edge of the waste package, the model utilizes 
+the \gls{SINDAG} lumped capacitance solver to determine the two dimensional heat 
+evolution of the repository as a result of a given waste package composition for 
+various drift spacings and arrives at an ideal drift spacing by iteration.
+
+\subsection{Geometry}
+
+Two \gls{SINDAG} model geometries have been used in this benchmark.  
+
+\subsubsection{Single Drift}
+
+In the single drift geometry, there is a distant fixed boundary condition and 
+one waste tunnel is modeled with a continuous, cylindrical heat source of 
+infinite length. The linear heat source in $[\frac{W}{m}]$ is modeled as if it 
+is spread radially onto the surface of the drift tunnel. 
+
+\subsubsection{Multiple Drift}
+
+In the multiple drift geometry, there is a reflective boundary condition at the 
+mid-drift point. This results in a model that has an infinite number of infinite 
+line source drifts.
+
+\subsection{Detail}
+
+The numerical detail available to the \gls{ANL} \gls{SINDAG} model has been 
+shown historically to be consistent and applicable to repository regulation 
+applications.
+
+
+% Geometries
+
+% Equations
+
+%% Benchmarking
+
+
+% Cases run : single drift in salt and clay, inf drift clay, finite drift clay
+
+% Summary of Discrepancies
+
+% Theory about source of Discrepancies
+
+
+%% Calibration
+
+% Auxillary Resistance Model
+
+% Notion
+
+It is assumed that \gls{EBS} compenents within the disposal tunnel are only a 
+small volume fraction of the rock and that the temperature field in the \gls{EBS} 
+respond to changes in the waste package decay heat more rapidly than the field 
+in the surrounding host rock.
+
+% Equation
+\begin{align}
+  \Delta T &= \frac{q}{L} \frac{1}{K_{th}}\frac{1}{D_d}\\
+  \intertext{where}
+  K_{th} &= \mbox{Thermal Conductivity}
+  \label{deltat}
+\end{align}
+
+
+% Image
+
+% Procedure for Fitting to ANL numerical model
+
+
+
 
 Solution Method
 The transient host rock thermal model is solved directly on the basis of host 
@@ -89,6 +303,14 @@ Calibration occured for geologies of interest.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Analysis}
+
+%% Results
+
+% Table
+
+% Theory
+
+% Application for Other Analytical Capacity Based models?
 
 The calibration was an improvement on the benchmarking.
 
