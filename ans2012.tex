@@ -11,15 +11,15 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Thermal Calibration of an Analytical Repository Model using SINDA}
+\title{Numerical Calibration of an Analytical Generic Nuclear Repository Heat 
+Transfer Model}
 \author{Kathryn D.~Huff, Theodore H.~Bauer}
 
 %% uncomment these next five only if using anstrans
 \institute{Department of Nuclear Engineering \& Engineering Physics, University 
 of Wisconsin, Madison, WI, 53706\\
 Nuclear Engineering Division, Argonne National Laboratory, Argonne, IL, 60439}
-\email{khuff@cae.wisc.edu \\
-thbauer@anl.gov}
+\email{khuff@cae.wisc.edu \& thbauer@anl.gov}
 \usepackage{graphicx}
 \usepackage{booktabs} % nice rules for tables
 \usepackage{microtype} % if using PDF
@@ -33,20 +33,20 @@ thbauer@anl.gov}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-This work proposes a simple calibrated thermal resistance model to improve the 
-accuracy of a rapid homogenous medium analytical transient heat transfer 
-solution model. The model to be calibrated, created by \gls{LLNL}, is a solution 
-of superimposed line and point source solutions representing a generic geologic 
-repository with a gridlike waste package layout in a homogeneous medium. The 
-auxillary thermal resistance model improves the model's estimation of the peak 
-temperature and peak time. The calibration of this model is undertaken as part 
+This work describes a benchmarking procedure between two generic geology nuclear 
+repository heat transfer models and proposes an auxillary thermal resistance 
+component to improve their agreement. The auxillary thermal resistance 
+component improves the accuracy of the rapid analytic model by calibration against
+the numeric model. 
+
+The analytic model to be calibrated, created by \gls{LLNL}, is a solution of
+superimposed line and point source solutions representing a generic geology 
+nuclear repository. The auxillary thermal resistance model improves the model's 
+estimation of the peak repository temperature as well as the timing of the peak 
+temperature. The calibration of this model is undertaken as part 
 of a benchmarking effort against a geometrically detailed generic thermal 
-repository model based on \gls{SINDAG} software.
-
-Calibrated an analytic thermal repository model from (\gls{LLNL}) model using a 
-thermal resistance model and determined appropriate coefficients from 
-\gls{SINDAG} calculations. 
-
+nuclear repository thermal model developed at \gls{ANL} and based on 
+\gls{SINDAG} software.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Description of Work}
@@ -60,6 +60,7 @@ The SINDA model is based on a lumped parameter construction that models parts of
 the repository in detail. 
 
 The LLNL model
+with a gridlike waste package layout in a homogeneous medium. 
 
 Utilize coupled thermal models that separately address thermal behaviors at very 
 different “length scales”.
