@@ -48,7 +48,7 @@ repository temperature as well as the timing of the peak temperature. The
 calibration was undertaken as part of a benchmarking effort against a 
 geometrically detailed generic thermal nuclear repository thermal model 
 developed at \gls{ANL} and based on the \gls{SINDAG} 
-software\cite{gaski_sinda_1987}.
+software\cite{gaski_sinda_1987,gaski_sindag_1987}.
 
 The auxillary thermal resistance component improves the accuracy of the rapid 
 analytic model by calibration against
@@ -133,7 +133,8 @@ heat limited waste capacity calculations for each lithology, for many waste
 package loading densities, and for many fuel cycle options 
 \cite{hardin_generic_2011, sutton_investigations_2011, 
 greenberg_application_2012}. It employs an analytical model from Carslaw and 
-Jaeger and is implemented in MathCAD \cite{carslaw_conduction_1959, ptc_mathcad_2010}.  The integral solver in the MathCAD toolset is the primary 
+Jaeger and is implemented in MathCAD \cite{carslaw_conduction_1959, 
+ptc_mathcad_2010}.  The integral solver in the MathCAD toolset is the primary 
 calculation engine for the LLNL thermal model, which relies on superposition of 
 integral solutions.  
 
@@ -202,69 +203,110 @@ in agreement with the \gls{ANL} model for its purpose, rapid evaluation of
 generic geology repository configurations.  The analytic \gls{LLNL} gave peak 
 temperatures for all cases run which agreed with the numerical \gls{ANL} model 
 within $4^{\circ}C$ and, for calculation radii less than 5 meters, consistently 
-reported peak temperature timing within 11 years of 
-the \gls{ANL} numerical model. In light of the magnitude of uncertainties involved 
-in generically modeling a non-site-specific geologic repository, this 
-sufficiently validated the \gls{LLNL} model with respect to its goals.
+reported peak temperature timing within 11 years of the \gls{ANL} numerical 
+model. In light of the magnitude of uncertainties involved in generically 
+modeling a non-site-specific geologic repository, this sufficiently validated 
+the \gls{LLNL} model with respect to its goals.
 
 The benchmark also revealed a notable discrepancy between the two models, 
 however. The time of peak heat arrived consistently sooner and the value of the 
 peak temperature was consistently lower in the homogeneous medium \gls{LLNL} 
 model than in the \gls{SINDAG} model. 
 
-The benchmarking cases run in this validation effort are listed in Table 
-\ref{tab:bench}.
+The benchmarking cases run in this validation effort for the simplified single 
+drift case are listed in Table \ref{tab:benchSingle}. 
 
 \begin{table}
   \centering
   \footnotesize{
   \begin{tabular}{|l|l|l|l|l|l|l|}
-    \multicolumn{7}{c}{\textbf{Benchmarking Results for Single Drift Scenario}}\\
+    \multicolumn{7}{c}{\textbf{Benchmarking Results for Single Drift 
+    Scenario}}\\
     \hline
-    \multicolumn{7}{|c|}{Peak Temperature Discrepancy $T_{peak,SINDA}-T_{peak,LLNL}$ $[^{\circ}C]$} \\
+    Material & \multicolumn{3}{|c|}{Clay} & \multicolumn{3}{|c|}{Salt}\\ & 
+    \multicolumn{3}{|c|}{$K_{th}=2.5$} & \multicolumn{3}{|c|}{$K_{th}=4.2$}\\ & 
+    \multicolumn{3}{|c|}{$\alpha=1.13\times10^{-6}$} & 
+    \multicolumn{3}{|c|}{$\alpha=2.07\times10^{-6}$}\\ 
     \hline
-    Material & \multicolumn{3}{|c|}{Clay} 
-    & \multicolumn{3}{|c|}{Salt}\\ 
-    & \multicolumn{3}{|c|}{$K_{th}=2.5$} 
-    & \multicolumn{3}{|c|}{$K_{th}=4.2$}\\ 
-    & \multicolumn{3}{|c|}{$\alpha=1.13\times10^{-6}$} 
-    & \multicolumn{3}{|c|}{$\alpha=2.07\times10^{-6}$}\\ 
-    \hline
-    Years Cooling  & 10     & 25      & 50      & 10     & 25     & 50\\
-    \hline
-     R=0.35m  & 2.96   & 2.3     & 1.57    & 2.02   & 1.72   & 1.24\\
-     R=0.69m  & 3.05   & 2.36    & 1.57    & 2.2    & 1.84   & 1.31\\
-     R=3.46m  & 2.09   & 1.92    & 1.45    & 2.21   & 1.7    & 1.28\\
-     R=7.04m  & 3.05   & 2.4     & 1.81    & 2.53   & 2.05   & 2.24\\
-     R=14.32m & 3.58   & 2.88    & 2.08    & 2.84   & 2.63   & 3.73\\
-    \hline
-    \multicolumn{7}{|c|}{Peak Heat Timing Discrepancy $t_{peak,SINDA}-t_{peak,LLNL}$ [yr]} \\
-    \hline
-    Material & \multicolumn{3}{|c|}{Clay} 
-    & \multicolumn{3}{|c|}{Salt}\\ 
-    & \multicolumn{3}{|c|}{$K_{th}=2.5$} 
-    & \multicolumn{3}{|c|}{$K_{th}=4.2$}\\ 
-    & \multicolumn{3}{|c|}{$\alpha=1.13\times10^{-6}$} 
-    & \multicolumn{3}{|c|}{$\alpha=2.07\times10^{-6}$}\\ 
+    & \multicolumn{6}{|c|}{Peak Temperature Discrepancy}\\ 
+    & \multicolumn{6}{|c|}{$T_{peak,SINDA}-T_{peak,LLNL}$ $[^{\circ}C]$} \\
     \hline
     Years Cooling  & 10     & 25      & 50      & 10     & 25     & 50\\
     \hline
-     R=0.35m  & 1    & 1       &  0.95   & 1      & 1      & 3\\
-     R=0.69m  & 2    & 2       & 0.95    & 2      & 3      & 4\\
-     R=3.46m  & 9    & 7       & 5.95    & 4      & 2      & 11\\
-     R=7.04m  & 4    & 13      & 9.95    & 11     & 10     & 288\\
-     R=14.32m & 16   & 14      & 20.94   & 17     & 285    & 282\\
+     R=0.35m  & 3.0   & 2.3     & 1.6    & 2.0   & 1.7   & 1.2\\
+     R=0.69m  & 3.1   & 2.4    & 1.6    & 2.2    & 1.8   & 1.31\\
+     R=3.46m  & 2.1   & 1.9    & 1.5    & 2.2   & 1.7    & 1.28\\
+     R=7.04m  & 3.1   & 2.4     & 1.8    & 2.5   & 2.1   & 2.24\\
+     R=14.32m & 3.6   & 2.9    & 2.1    & 2.8   & 2.6   & 3.73\\
+    \hline
+    & \multicolumn{6}{|c|}{Peak Heat Timing Discrepancy}\\ 
+    & \multicolumn{6}{|c|}{ $t_{peak,SINDA}-t_{peak,LLNL}$ [yr]} \\
+    \hline
+    Material & \multicolumn{3}{|c|}{Clay} & \multicolumn{3}{|c|}{Salt}\\ & 
+    \multicolumn{3}{|c|}{$K_{th}=2.5$} & \multicolumn{3}{|c|}{$K_{th}=4.2$}\\ & 
+    \multicolumn{3}{|c|}{$\alpha=1.13\times10^{-6}$} & 
+    \multicolumn{3}{|c|}{$\alpha=2.07\times10^{-6}$}\\ \hline
+    Years Cooling  & 10     & 25      & 50      & 10     & 25     & 50\\
+    \hline
+     R=0.35m  & 1    & 1       & 1   & 1      & 1      & 3\\
+     R=0.69m  & 2    & 2       & 1    & 2      & 3      & 4\\
+     R=3.46m  & 9    & 7       & 6    & 4      & 2      & 11\\
+     R=7.04m  & 4    & 13      & 10    & 11     & 10     & 288\\
+     R=14.32m & 16   & 14      & 21   & 17     & 285    & 282\\
     \hline
   \end{tabular}
-  \caption{Benchmarking in the single drift case showed that the peak heat 
-  was calculated to be lower and arrived consistently sooner in the analytic 
-  model. }
-  \label{tab:bench}
+  \caption{Benchmarking in the single drift case showed that the peak heat was 
+  calculated to be lower and arrived consistently sooner in the analytic model. 
+  }
+  \label{tab:benchSingle}
+  }
+\end{table}
+
+\begin{table}
+  \centering
+  \footnotesize{
+  \begin{tabular}{|l|l|l|l|}
+    \multicolumn{4}{c}{\textbf{Benchmarking Results for 101 Drift Scenario}}\\
+    \hline
+    Material & \multicolumn{3}{|c|}{Clay} \\
+    & \multicolumn{3}{|c|}{$K_{th}=2.5$}\\ 
+    & \multicolumn{3}{|c|}{$\alpha=1.13\times10^{-6}$}  \\
+    \hline
+    & \multicolumn{3}{|c|}{Peak Temperature Discrepancy} \\
+    & \multicolumn{3}{|c|}{$T_{peak,SINDA}-T_{peak,LLNL}$ $[^{\circ}C]$} \\
+    \hline
+    Years Cooling  & 10  & 25 & 50 \\
+    \hline
+    R=0.35m   & 7 & 4.6 & 2.1 \\
+    \hline
+    &\multicolumn{3}{|c|}{Peak Heat Timing Discrepancy}\\
+    &\multicolumn{3}{|c|}{ $t_{peak,SINDA}-t_{peak,LLNL}$ [yr]} \\
+    \hline
+    R=0.35m       & -13.5   & 2   & -6  \\
+    \hline
+  \end{tabular}
+  \caption{Benchmarking in the multiple drift case showed that the peak heat was 
+  calculated to be consistently lower in the analytic model and deviated further
+  from the numerical model than did the single drift case.
+  }
+  \label{tab:benchMulti}
   }
 \end{table}
 
 
 \subsection{Calibration}
+
+The goal of the calibration effort is accurate estimation of temperature fields in 
+geologic repositories both across large expanses of host rock over long time 
+spans using the analytical model and locally, over much shorter time spans within the 
+engineered barrier systems using the numerical model.  Specifically, the 
+\gls{LLNL} line source 
+model provides accurate temperatures across the full span of a large 
+repository over large spans of time. The accuracy of this model in the vicinity of 
+tunnel walls or waste package 
+configurations can be improved by calibration.  The SINDAG models discussed can  
+be expected to accurately model temperatures close in to engineered storage units 
+and in shorter time frames.
 
 It is assumed that \gls{EBS} compenents within the disposal tunnel are only a 
 small volume fraction of the rock and
