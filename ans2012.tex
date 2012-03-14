@@ -36,43 +36,27 @@ $^2$Nuclear Engineering Division, Argonne National Laboratory, Argonne, IL,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-This work describes a benchmarking effort conducted to determine the accuracy of a new
-generic geology thermal repository model developed at
-\gls{LLNL}\cite{hardin_generic_2011,sutton_investigations_2011,greenberg_application_2012}
-relative to more traditional techniques and proposes an auxillary thermal resistance 
-component to improve their agreement. 
+This work describes a benchmarking effort conducted to determine the accuracy of 
+a new generic geology thermal repository model
+relative to more traditional techniques and proposes a physically plausible auxillary thermal 
+resistance component to improve their agreement.  
 
-The analytic model to be calibrated, created by \gls{LLNL}, calulates the 
-superposition of line and point source solutions representing a generic geology 
-nuclear repository. The auxillary thermal resistance calibration component 
-suggested in this work improves the analytical model's estimation of the peak 
-repository temperature as well as the timing of the peak temperature. The 
-calibration was undertaken as part of a benchmarking effort against a 
-geometrically detailed generic thermal nuclear repository thermal model 
-developed at \gls{ANL} and based on the \gls{SINDAG} 
-software\cite{gaski_sinda_1987,gaski_sindag_1987}.
+The analytic model to be calibrated was developed at 
+\gls{LLNL}\cite{hardin_generic_2011,sutton_investigations_2011,greenberg_application_2012} 
+and calulates the superposition of line and point source solutions representing 
+a generic geology nuclear repository. It was benchmarked and calibrated against 
+a numeric thermal model that utilizes a geometrically-explicit 
+lumped-parameter modeling approach developed over several years at \gls{ANL} 
+using the \gls{SINDAG} thermal modeling code 
+\cite{gaski_sinda_1987,gaski_sindag_1987}.  Application of this approach to 
+underground storage of heat generating nuclear waste streams within the proposed 
+\gls{YMR} site has been widely reported \cite{wigeland_separations_2006}. 
 
 The auxillary thermal resistance component improves the accuracy of the rapid 
-analytic model by calibration against the numeric model. 
+analytic model by calibration against the numeric model.  Specificially, it 
+improves estimations of the peak repository temperature as well as the timing of 
+the peak temperature. 
 
-It would be anticipated that the accuracy and utility of the temperature field
-calculated with the \gls{LLNL} MathCAD model would provide an accurate 
-``birds-eye''
-view in regions that are many tunnel radii away from actual storage units;
-i.e., at distances where tunnels and individual storage units could
-realistically be approximated as physical ``lines'' or ``points''. 
-This present benchmarking effort for the
-MathCAD model focusses on its ability to accurately represent the “close-in”
-temperature field within and around actual physical storage units and tunnels. 
-
-Specifically, close-in temperatures computed with the \gls{LLNL} MathCAD model were 
-benchmarked against temperatures computed using geometrically-explicit 
-lumped-parameter, repository thermal models. Such modeling techniques were 
-developed over several years at \gls{ANL} using the \gls{SINDAG} thermal 
-modeling code \cite{gaski_sinda_1987}  Application to underground storage of 
-heat generating nuclear waste streams within the proposed \gls{YMR} Site has 
-been widely reported \cite{wigeland_separations_2006}.  New \gls{SINDAG} thermal 
-models presented here share this same basic modeling approach. 
 
 %% RESULTS HERE %%
 
@@ -80,32 +64,29 @@ models presented here share this same basic modeling approach.
 
 %% The ANL model
 
-\section{Background: Numerical ANL Model}
+\section{Background: Numerical SINDA{\textbackslash}G Model}
 
-The numerical heat transport model created by the UFD team at \gls{ANL} using 
-the \gls{SINDAG} heat transport framework employs a detailed numerical  model.  
-It was created to model two distinct geometric arrangements, a single drift 
-concept and an infinite drift concept.  For a given waste stream, tunnel radius, 
-and geologic parameters (i.e.  thermal conductivity, density, and specific heat 
-capacity), the model is able to arrive  at the temperature gradient surrounding 
-the tunnel wall. It can be run with an optimization loop to arrive at a minimal 
-drift spacing for a given waste stream in agreement with user input thermal 
-limits, but in this validation effort it was run deterministically from 
-benchmark parameters. 
+The numeric heat transport model created by the \gls{UFD} team at \gls{ANL} 
+using the \gls{SINDAG} heat transport framework employs detailed finite-difference numeric  
+models describing two distinct geometric arrangements: a single 
+storage drift and an infinite array of identical, uniformly spaced  storage drifts.  
+For a given waste stream, tunnel radius, and geologic parameters (i.e. thermal conductivity, density, and 
+specific heat capacity), the model is able to compute the temperature field 
+surrounding the tunnel wall and beyond.  
 
 \subsection{Calculation Method}
 
-The \gls{SINDAG} calculation engine uses a lumped parameter numerical model.
+The \gls{SINDAG} calculation engine uses a lumped parameter numeric model.
 Originally created for optimal waste loading analysis of the \gls{YMR}, the 
-model is geometrically adjustable in two dimensions,  as is demonstrated in 
+model for an array of drifts is geometrically adjustable,  as illustrated in 
 Figure \ref{fig:sindageom}. 
 
 \begin{figure}[htbp!]
   \begin{center}
     \includegraphics[width=0.4\textwidth]{./sindageom.eps}
   \end{center}
-  \caption{The geometry of the thermal model can be adjusted in two dimensions, 
-  altering the tunnel spacing and the vertical distance from the aquifer.}
+  \caption{The geometry of the 2D thermal model can be adjusted by altering 
+  tunnel diameter, tunnel spacing, and the vertical distance below the surface.}
   \label{fig:sindageom}
 \end{figure}
 
@@ -137,25 +118,25 @@ Two \gls{SINDAG} model geometries have been used in this benchmark.
 In the single drift geometry, there is a distant fixed boundary condition and 
 one waste tunnel is modeled with a continuous, cylindrical heat source of 
 infinite length. The linear heat source in $[\frac{W}{m}]$ is modeled as if it 
-is spread radially onto the surface of the drift tunnel. 
+is spread azimuthally over the surface of the drift tunnel. 
 
 \subsubsection{Multiple Drift}
 
-In the multiple drift geometry, there is a reflective boundary condition at the 
-mid-drift point. This results in a model that has an infinite number of infinite 
-line source drifts.
+as llustrated in Figure \ref{fig:sindageom}, an infinite array of identical single-drift heat sources is modeled,
+by assuming one-half of a storage tunnel with a reflective boundary condition at a vertical
+plane midway between drifts. 
 
-\section{Background: Analytical LLNL Model}
+\section{Background: Analytical MathCAD Model}
 
-This model, created at \gls{LLNL} for the \gls{UFD} campaign seeks to inform 
-heat limited waste capacity calculations for each lithology, for many waste 
-package loading densities, and for many fuel cycle options 
+The analytic model, created at \gls{LLNL} for the \gls{UFD} campaign seeks to 
+inform heat limited waste capacity calculations for each lithology, for many 
+waste package loading densities, and for many fuel cycle options 
 \cite{hardin_generic_2011, sutton_investigations_2011, 
-greenberg_application_2012}. It employs an analytical model from Carslaw and 
+greenberg_application_2012}. It employs an analytic model from Carslaw and 
 Jaeger and is implemented in MathCAD \cite{carslaw_conduction_1959, 
 ptc_mathcad_2010}.  The integral solver in the MathCAD toolset is the primary 
-calculation engine for the LLNL thermal model, which relies on superposition of 
-integral solutions.  
+calculation engine for the analytic MathCAD thermal model, which relies on 
+superposition of integral solutions.  
 
 \subsection{Calculation Method}
 
@@ -181,7 +162,7 @@ the lifetime of the repository.
   \label{fig:llnl}
 \end{figure}
 
-The geometric layout of the analytical \gls{LLNL} model in Figure \ref{fig:llnl} 
+The geometric layout of the analytic \gls{LLNL} model in Figure \ref{fig:llnl} 
 shows  that the central package is represented by the finite line solution
 \begin{align}
   T_{line}(t,x,y,z) &= \frac{1}{8\pi K_{th}} 
@@ -212,28 +193,35 @@ Superimposed point and line source solutions allow for a notion of the
 repository layout to be modeled in the host rock.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Description of the Actual Work}
+\section{Results of Comparative Analyses}
 
 \subsection{Benchmarking}
 
-The benchmarking effort between the analytical \gls{LLNL} model and the 
-\gls{SINDAG} \gls{ANL} model showed that the \gls{LLNL} model was sufficiently 
-in agreement with the \gls{ANL} model for its purpose, rapid evaluation of 
-generic geology repository configurations.  The analytic \gls{LLNL} gave peak 
-temperatures for all cases run which agreed with the numerical \gls{ANL} model 
-within $4^{\circ}C$ and, for calculation radii less than 5 meters, consistently 
-reported peak temperature timing within 11 years of the \gls{ANL} numerical 
-model. In light of the magnitude of uncertainties involved in generically 
+Benchmarking results shown in Tables \ref{tab:benchMulti} and 
+\ref{tab:benchSingle} below  effort between the analytic \gls{LLNL}
+model and the numeric \gls{SINDAG} \gls{ANL} models illustrate the degree of agreement 
+between analytic and numeric models. In particular, the analytic model would seem 
+well-suited for purposes of rapid evaluation of generic geologic repository configurations. 
+
+Specifically, for the single drift geometry benchmark, the 
+analytic model gave peak temperatures for all cases run which agreed with the 
+numeric model within $4^{\circ}C$ and, for calculation radii less than 5 meters, 
+consistently reported peak temperature timing within 11 years of the \gls{ANL} 
+numeric model. For the multiiple drift case, in which the numeric model 
+approximated an infinite array of drifts and the analytic approach modeled 101, 
+the differences between models were slightly greater. The benchmarking cases run 
+in this validation effort are listed in Table \ref{tab:benchSingle} and for the 
+simplified single drift and in Table \ref{tab:benchMulti} for the multiple drift 
+case.
+
+In light of the magnitude of uncertainties involved in generically 
 modeling a non-site-specific geologic repository, this sufficiently validated 
-the \gls{LLNL} model with respect to its goals.
+the analytic \gls{LLNL} model with respect to its goals.
 
-The benchmark also revealed a notable discrepancy between the two models, 
+The benchmark revealed a notable discrepancy between the two models, 
 however. The time of peak heat arrived consistently sooner and the value of the 
-peak temperature was consistently lower in the homogeneous medium \gls{LLNL} 
-model than in the \gls{SINDAG} model. 
-
-The benchmarking cases run in this validation effort for the simplified single 
-drift case are listed in Table \ref{tab:benchSingle}. 
+peak temperature was consistently lower in the homogeneous medium analytic
+model than in the numeric model. 
 
 \begin{table}
   \centering
@@ -242,24 +230,24 @@ drift case are listed in Table \ref{tab:benchSingle}.
     \multicolumn{7}{c}{\textbf{Benchmarking Results for Single Drift 
     Scenario}}\\
     \hline
+    & \multicolumn{6}{|c|}{Peak Temperature Discrepancy}\\ 
+    & \multicolumn{6}{|c|}{$T_{peak,num}-T_{peak,an}$ $[^{\circ}C]$} \\
+    \hline
     Material & \multicolumn{3}{|c|}{Clay} & \multicolumn{3}{|c|}{Salt}\\ & 
     \multicolumn{3}{|c|}{$K_{th}=2.5$} & \multicolumn{3}{|c|}{$K_{th}=4.2$}\\ & 
     \multicolumn{3}{|c|}{$\alpha=1.13\times10^{-6}$} & 
     \multicolumn{3}{|c|}{$\alpha=2.07\times10^{-6}$}\\ 
     \hline
-    & \multicolumn{6}{|c|}{Peak Temperature Discrepancy}\\ 
-    & \multicolumn{6}{|c|}{$T_{peak,SINDA}-T_{peak,LLNL}$ $[^{\circ}C]$} \\
-    \hline
     Years Cooling  & 10     & 25      & 50      & 10     & 25     & 50\\
     \hline
      R=0.35m  & 3.0   & 2.3     & 1.6    & 2.0   & 1.7   & 1.2\\
-     R=0.69m  & 3.1   & 2.4    & 1.6    & 2.2    & 1.8   & 1.31\\
-     R=3.46m  & 2.1   & 1.9    & 1.5    & 2.2   & 1.7    & 1.28\\
-     R=7.04m  & 3.1   & 2.4     & 1.8    & 2.5   & 2.1   & 2.24\\
-     R=14.32m & 3.6   & 2.9    & 2.1    & 2.8   & 2.6   & 3.73\\
+     R=0.69m  & 3.1   & 2.4    & 1.6    & 2.2    & 1.8   & 1.3\\
+     R=3.46m  & 2.1   & 1.9    & 1.5    & 2.2   & 1.7    & 1.3\\
+     R=7.04m  & 3.1   & 2.4     & 1.8    & 2.5   & 2.1   & 2.2\\
+     R=14.32m & 3.6   & 2.9    & 2.1    & 2.8   & 2.6   & 3.7\\
     \hline
     & \multicolumn{6}{|c|}{Peak Heat Timing Discrepancy}\\ 
-    & \multicolumn{6}{|c|}{ $t_{peak,SINDA}-t_{peak,LLNL}$ [yr]} \\
+    & \multicolumn{6}{|c|}{ $t_{peak,num}-t_{peak,an}$ [yr]} \\
     \hline
     Material & \multicolumn{3}{|c|}{Clay} & \multicolumn{3}{|c|}{Salt}\\ & 
     \multicolumn{3}{|c|}{$K_{th}=2.5$} & \multicolumn{3}{|c|}{$K_{th}=4.2$}\\ & 
@@ -275,7 +263,8 @@ drift case are listed in Table \ref{tab:benchSingle}.
     \hline
   \end{tabular}
   \caption{Benchmarking in the single drift case showed that the peak heat was 
-  calculated to be lower and arrived consistently sooner in the analytic model. 
+  calculated to be lower and arrived consistently sooner in the analytic (an) 
+  model than in the numeric (num) model. 
   }
   \label{tab:benchSingle}
   }
@@ -292,21 +281,21 @@ drift case are listed in Table \ref{tab:benchSingle}.
     & \multicolumn{3}{|c|}{$\alpha=1.13\times10^{-6}$}  \\
     \hline
     & \multicolumn{3}{|c|}{Peak Temperature Discrepancy} \\
-    & \multicolumn{3}{|c|}{$T_{peak,SINDA}-T_{peak,LLNL}$ $[^{\circ}C]$} \\
+    & \multicolumn{3}{|c|}{$T_{peak,num}-T_{peak,an}$ $[^{\circ}C]$} \\
     \hline
     Years Cooling  & 10  & 25 & 50 \\
     \hline
     R=0.35m   & 7 & 4.6 & 2.1 \\
     \hline
     &\multicolumn{3}{|c|}{Peak Heat Timing Discrepancy}\\
-    &\multicolumn{3}{|c|}{ $t_{peak,SINDA}-t_{peak,LLNL}$ [yr]} \\
+    &\multicolumn{3}{|c|}{ $t_{peak,num}-t_{peak,an}$ [yr]} \\
     \hline
     R=0.35m       & -13.5   & 2   & -6  \\
     \hline
   \end{tabular}
   \caption{Benchmarking in the multiple drift case showed that the peak heat was 
-  calculated to be consistently lower in the analytic model and deviated further
-  from the numerical model than did the single drift case.
+  calculated to be consistently lower in the analytic (an) model and deviated further
+  from the numeric (num)  model than did the single drift case.
   }
   \label{tab:benchMulti}
   }
@@ -317,23 +306,24 @@ drift case are listed in Table \ref{tab:benchSingle}.
 
 The goal of the calibration effort is accurate estimation of temperature fields in 
 geologic repositories both across large expanses of host rock over long time 
-spans using the analytical model and locally, over much shorter time spans within the 
-engineered barrier systems using the numerical model.  Specifically, the 
-\gls{LLNL} line source 
-model provides accurate temperatures across the full span of a large 
-repository over large spans of time. The accuracy of this model in the vicinity of 
-tunnel walls or waste package 
-configurations can be improved by calibration.  The SINDAG models discussed can  
+spans using the analytic model and locally, over much shorter time spans within the 
+engineered barrier systems using the numeric model.  Physically, it would be expected 
+that the analytic line source model provides accurate temperatures across large spans
+of a repository over large spans of time in regions far enough from storage units that 
+heat generated in the repository would be accurately described as line sources. It is also
+possible the model's accuracy in the vicinity of tunnel walls or waste package 
+configurations can be improved by "calibration" against the SINDAG models discussed can  
 be expected to accurately model temperatures close in to engineered storage units 
 and in shorter time frames.
 
 It is assumed that \gls{EBS} compenents within the disposal tunnel are only a 
-small volume fraction of the rock and
-Due to the high heat conductivity materials in the \gls{EBS} it can be assumed 
-that in reality, the temperature field in the \gls{EBS} responds to changes in 
-the waste package decay heat more rapidly than the field in the surrounding host 
-rock. This behavior is not taken into account in the analytical model, but is 
-taken account of in the numerical model. 
+small volume fraction of the rock and Due to the high heat conductivity materials 
+in the \gls{EBS} it can be assumed that in reality, the temperature field in the
+\gls{EBS} responds to changes in the waste package decay heat more rapidly than 
+the field in the surrounding host rock. This behavior is not taken into account
+in the analytic model, but is explicitly accounted for in the numeric model. The following
+simple empirical expression is plausibly added to the analytic model to more accurately
+estimate temperatures at locations within storage drifts. 
 
 The difference in temperature due to the instantaneous transient response in the  
 tunnel is here modeled as $\Delta T$, 
@@ -351,7 +341,7 @@ tunnel is here modeled as $\Delta T$,
 \end{align}
 
 This allows the capacitive behvior of the model to remain entirely in the 
-\gls{LLNL} model, and embeds the resistive behavior in a purely algebraic 
+analytic model, and embeds the resistive behavior in a purely algebraic 
 calibration. The calibration is valid for all repository configurations which 
 share a tunnel diameter, tunnel spacing, and host rock material.
 
@@ -368,19 +358,21 @@ share a tunnel diameter, tunnel spacing, and host rock material.
 
 For a clay repository ($K_{th} = 2.5 [W\cdot m^{-1}\cdot K^{-1}$, $\alpha = 
 1.13\times10^{-6}[m^2\cdot s^{-1}$), with a tunnel diameter of $0.7m$, the 
-calibration was completed using a fit between a 101 drift \gls{LLNL} scenario 
-and the \gls{ANL} model, with an infinite number of drifts. $D_{d}$, the drift 
+calibration was completed using a fit between a 101 drift analytic scenario 
+and the numeric model with an infinite number of drifts. $D_{d}$, the drift 
 spacing, was $30m$ in each case. The results are shown in Figure \ref{fig:fit}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
 
-The result of this work is a procedure for calibration of a rapid analytical 
+The result of this work is a procedure for calibration of a rapid analytic 
 heat transport model which improves peak temperature value and timing agreement 
 with a more detailed, but more time intensive heat transport model. With a 
 single calibration, it is possible for the disagreement between the two models to 
-be aleviated for many configurations.  We recommend that for this and other 
-analytical models which neglect rapid heat transport in engineered components 
+be aleviated for many configurations. Further work toward developing a 
+dimensionally appropriate theoretical dependence for the coefficient is 
+forthcoming. However, we recommend that for this and other 
+analytic models which neglect rapid heat transport in engineered components 
 near the calculation radius, the additional step will improve results near the 
 area of interest.
 
