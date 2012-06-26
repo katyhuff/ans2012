@@ -1,0 +1,74 @@
+%        File: pres.tex
+%     Created: Tues June 19 07:00 AM 2012 C
+%
+%\documentclass[11pt,handout]{beamer}
+\documentclass[9pt]{beamer}
+\usetheme[white]{Wisconsin}
+%\title[short title]{long title}
+\title[Numerical Calibrations]{Numerical Calibrations of an Analytical Generic 
+Nuclear Repository Heat Transfer Model} 
+%\subtitle[short subtitle]{long subtitle}
+\subtitle[ANS 2012]{American Nuclear Society Summer Meeting 2012} 
+%\author[short name]{long name}
+\author[Kathryn Huff]{Kathryn D.~Huff$^{1,2}$ \& Theodore H. Bauer$^2$}
+%\date[short date]{long date}
+\date[06.27.2012]{June 27, 2012}
+%\institution[short name]{long name}
+\institute[UW-Madison]{$^1$University of Wisconsin-Madison \& $^2$Argonne National Laboratory}
+%Those icons in the references are terrible looking
+\setbeamertemplate{bibliography item}[text]
+
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% From uw-beamer Here's a handy bit of code to place at 
+%% the beginning of your presentation (after \begin{document}):
+\newcommand*{\alphabet}{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz}
+\newlength{\highlightheight}
+\newlength{\highlightdepth}
+\newlength{\highlightmargin}
+\setlength{\highlightmargin}{2pt}
+\settoheight{\highlightheight}{\alphabet}
+\settodepth{\highlightdepth}{\alphabet}
+\addtolength{\highlightheight}{\highlightmargin}
+\addtolength{\highlightdepth}{\highlightmargin}
+\addtolength{\highlightheight}{\highlightdepth}
+\newcommand*{\Highlight}{\rlap{\textcolor{HighlightBackground}{\rule[-\highlightdepth]{\linewidth}{\highlightheight}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%--------------------------------%%
+\frame{
+\titlepage
+}
+%%--------------------------------%%
+\AtBeginSection[]{
+\begin{frame}[c!]
+  \frametitle{Outline}
+  \tableofcontents[currentsection]
+\end{frame}
+}
+
+%%--------------------------------%%
+%%--------------------------------%%
+
+\include{thermal}
+
+%%--------------------------------%%
+%%--------------------------------%%
+\begin{frame}[allowframebreaks]
+  \frametitle{References}
+  \bibliographystyle{plain}
+  {\footnotesize \bibliography{ans2012pres} }
+
+\end{frame}
+
+%%--------------------------------%%
+
+
+
+
+
+\end{document}
+
+
+
+
