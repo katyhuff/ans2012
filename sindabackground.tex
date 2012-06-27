@@ -1,8 +1,6 @@
 
 
 % SINDA 
-\subsection{Background: Numerical SINDA{\textbackslash}G Model}
-
 \begin{frame}[ctb!]
   \frametitle{Background: Numerical SINDA{\textbackslash}G Model}
   A model created by the UFD team at Argonne national lab using the 
@@ -20,7 +18,7 @@
 
 
 \begin{frame}[ctb!]
-  \frametitle{Lumped Parameter Technique}
+  \frametitle{Numerical Model : Lumped Parameter Technique}
   % resistor diagram
   \begin{figure}[h!]
     \begin{center}
@@ -35,23 +33,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% The ANL model
-
-\begin{frame}[ctb!]
-  \frametitle{Background: Numerical SINDA{\textbackslash}G Model}
-
-  The numeric heat transport model created by the UFD team at Argonne
-  using the SINDA{\textbackslash}G heat transport framework employs detailed finite-difference numeric  
-  models describing two distinct geometric arrangements: 
-
-  \begin{itemize}
-  \item a single storage drift 
-  \item an infinite array of identical, uniformly spaced  storage drifts.  
-  \end{itemize}
-  
-  For a given waste stream, tunnel radius, and geologic parameters (i.e. thermal conductivity, density, and 
-  specific heat capacity), the model is able to compute the temperature field 
-  surrounding the tunnel wall and beyond.  
-\end{frame}
 
 \begin{frame}[ctb!]
 \frametitle{Calculation Method}
@@ -78,7 +59,7 @@ The SINDA{\textbackslash}G  lumped capacitance tool solves a thermal circuit, fo
 conducting nodes may be of four types corresponding to the four modes of heat 
 transfer. Nodes are connected by conduction, convection, radiation, and mass 
 flow heat transfer links. In the SINDA{\textbackslash}G engine, these are represented by
-
+\footnotesize{
 \begin{align}
   R_{rad}  &= \frac{1}{\sigma F_{ij}A\left[ T_i + T_A + T_j + T_A 
   \right]\left[(T_i+T_A)^2+(T_j+T_A)^2\right]}\nonumber\\
@@ -94,6 +75,7 @@ flow heat transfer links. In the SINDA{\textbackslash}G engine, these are repres
   T_A&= ~~\mbox{absolute temperature} [^{\circ}C] \nonumber\\
   F_{ij}&= ~~\mbox{radiation interchange factor} [-] .\nonumber
 \end{align}
+}
 \end{frame}
 
 
@@ -101,16 +83,9 @@ flow heat transfer links. In the SINDA{\textbackslash}G engine, these are repres
   \frametitle{SINDA{\textbackslash}G Geometries}
 
 Two SINDA{\textbackslash}G model geometries have been used in this benchmark.  
-
-\textbf{Single Drift}
-In the single drift geometry, there is a distant fixed boundary condition and 
-one waste tunnel is modeled with a continuous, cylindrical heat source of 
-infinite length. The linear heat source in $[\frac{W}{m}]$ is modeled as if it 
-is spread azimuthally over the surface of the drift tunnel. 
-
-\textbf{Multiple Drift}
-As llustrated in Figure \ref{fig:sindageom}, an infinite array of identical single-drift heat sources is modeled,
-by assuming one-half of a storage tunnel with a reflective boundary condition at a vertical
-plane midway between drifts. 
+\begin{itemize}
+  \item{Single Drift} In the single drift geometry, there is a distant fixed boundary condition and one waste tunnel is modeled with a continuous, cylindrical heat source of infinite length. The linear heat source in $[\frac{W}{m}]$ is modeled as if it is spread azimuthally over the surface of the drift tunnel.  
+  \item{Multiple Drift} As llustrated in Figure \ref{fig:sindageom}, an infinite array of identical single-drift heat sources is modeled, by assuming one-half of a storage tunnel with a reflective boundary condition at a vertical plane midway between drifts. 
+\end{itemize}
 
 \end{frame}

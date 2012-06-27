@@ -1,21 +1,30 @@
+% Waste is a problem
+% Decisionmakers are contemplating many fuel cycle options
+% Decisionmakers are contemplating many repository options
+% Interfacing between FCO/SA campaign and UFD campaign
 
 
 \begin{frame}[ctb!]
-  \frametitle{Heat Limits In Geology}
-  % table?
-  Important heat limits in materials of the repository restrict loading designs 
-  and capacity.
+  \frametitle{Methods of Heat Transport in Various Geologies}
   \input{heat_tab.tex}
+  Similar heat transport models can be used for all geologies, but are 
+  differentiated by material parameters $(c_p, K, \rho)$, geometric parameters 
+  (tunnel spacing, tunnel radius), and different geochemical constraints.
 \end{frame}
 
-% heat based capacity 
 \begin{frame}[ctb!]
-  \frametitle{Impact of Repository Designs}
-  % lines, points, infinite lines, footprints.
-   \input{footprint_tab.tex}
+  \frametitle{Heat Limits In Various Geologies}
+  % Table
+  Important heat limits in materials of the repository restrict loading designs 
+  and capacity.  
+  \input{geos_tab}
+\end{frame}
+
+ \begin{frame}
+   \frametitle{Impact of Repository Geologies}
    \begin{figure}[h!]
      \begin{center}
-       \includegraphics[height=.5\textheight]{llnlGeos.eps}
+       \includegraphics[height=.7\textheight]{llnlGeos.eps}
      \end{center}
      \caption{LLNL has found that the higher heat limit, alcove geometry, and 
      high conductivity in salt allows for earlier loading times.}
@@ -23,11 +32,9 @@
    \end{figure}
 \end{frame}
 
+% heat based capacity 
 \begin{frame}[ctb!]
-  \frametitle{Detailed Techniques}
-  % 2d,3d,finite diffs, etc.
-  \input{heat_tab.tex}
-  Similar heat transport models can be used for all geologies, but are 
-  differentiated by material parameters $(c_p, K, \rho)$ and different 
-  thermal constraints.
-\end{frame}
+  \frametitle{Impact of Repository Designs}
+   \input{footprint_tab.tex}
+ \end{frame}
+
