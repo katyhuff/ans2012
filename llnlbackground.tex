@@ -6,8 +6,7 @@ The analytical  model
 \begin{itemize} 
   \item was created at LLNL (H. Greenberg, J. Blink, et. al) \cite{hardin_generic_2011, sutton_investigations_2011, 
 greenberg_application_2012}
-  \item for the UFD campaign 
-  \item employing an analytic model from Carslaw and Jaeger \cite{carslaw_conduction_1959} 
+  \item employs an analytic model from Carslaw and Jaeger \cite{carslaw_conduction_1959} 
   \item is implemented in MathCAD \cite{ptc_mathcad_2010}
   \item seeks to inform heat limited waste capacity calculations for 
     \begin{itemize}
@@ -74,11 +73,18 @@ greenberg_application_2012}
 \frametitle{Analytical Model : Calculation Method}
 The model consists of two conceptual regions, an external region representing 
 the host rock and an internal region representing the waste form, package, and 
-buffer Engineered Barrier System within the disposal tunnel wall. 
+buffer Engineered Barrier System within the disposal tunnel wall.   
 \begin{itemize}
-  \item Since the thermal mass of the EBS is small in comparison to the thermal mass of the host rock, the internal region may be treated as quasi-steady state. 
-  \item The transient state of the temperature at the calculation radius is found with a convolution of the transient external solution with the steady state internal solution.  
-  \item The process is then iterated with a one year resolution in order to arrive at a temperature evolution over the lifetime of the repository. 
+  \item Since the thermal mass of the EBS is small in comparison to the thermal 
+    mass of the host rock, the internal region may be treated as quasi-steady 
+    state.
+  \item The transient state of the temperature at the calculation radius is 
+    found with a convolution of the transient external solution with the steady 
+    state internal solution.
+  \item The internal and external regions are \textbf{approximated} to be a 
+    single homogeneous medium.
+  \item The process is then iterated with a one year resolution in order to 
+    arrive at a temperature evolution over the lifetime of the repository. 
 \end{itemize}
 \end{frame}
 
@@ -133,7 +139,7 @@ shows  that the central package is represented by the finite line solution
  \footnotesize{
   \begin{align}
     T_{point}(t,r) &= \frac{1}{8K_{th}\sqrt{\alpha}\pi^{\frac{3}{2}}}\nonumber\\
-     &\bigintsss_0^{-t}\!\frac{q(t')}{(t-t')^{\frac{3}{2}}}e^{\frac{-r^2}{4\alpha(t-t')}}\,\mathrm{dt'}.
+     &\bigintsss_0^{t}\!\frac{q(t')}{(t-t')^{\frac{3}{2}}}e^{\frac{-r^2}{4\alpha(t-t')}}\,\mathrm{dt'}.
     \label{point}
   \end{align}
   }

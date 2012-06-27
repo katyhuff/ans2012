@@ -2,16 +2,18 @@
 
 % SINDA 
 \begin{frame}[ctb!]
-  \frametitle{Background: Numerical SINDA{\textbackslash}G Model}
-  A model created by the UFD team at Argonne national lab using the 
-  SINDA{\textbackslash}G heat transport framework employs a lumped parameter 
-  model and an optimization loop to arrive at a minimal drift spacing for a 
-  given waste stream in agreement with user input thermal limits. 
+  \frametitle{Numerical Model : SINDA{\textbackslash}G Technique}
+  This techinique was originally created for optimal waste loading analysis of 
+  YMR by the UFD team at Argonne national lab. It  uses the 
+  SINDA{\textbackslash}G heat transport framework which employs a geometrically 
+  precise numerical lumped parameter model. 
   \begin{figure}[h!]
     \begin{center}
       \includegraphics[height=.5\textheight]{sindageom.eps}
     \end{center}
-    \caption{Two adjustable geometric dimensions of the ANL model.} 
+    \caption{The geometry of the 2D thermal model can be adjusted by altering 
+    tunnel diameter, tunnel spacing, and the vertical distance below the 
+    surface.}
     \label{fig:sindageom}
   \end{figure}
 \end{frame}
@@ -30,31 +32,8 @@
   \end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% The ANL model
-
 \begin{frame}[ctb!]
-\frametitle{Calculation Method}
-
-The SINDA{\textbackslash}G  calculation engine uses a lumped parameter numeric model.
-Originally created for optimal waste loading analysis of the Yucca Mountain 
-Repository, the 
-model for an array of drifts is geometrically adjustable,  as illustrated in 
-Figure \ref{fig:sindageom}. 
-
-\begin{figure}[htbp!]
-  \begin{center}
-    \includegraphics[width=0.4\textwidth]{./sindageom.eps}
-  \end{center}
-  \caption{The geometry of the 2D thermal model can be adjusted by altering 
-  tunnel diameter, tunnel spacing, and the vertical distance below the surface.}
-  \label{fig:sindageom}
-\end{figure}
-\end{frame}
-
-\begin{frame}[ctb!]
-\frametitle{Calculation Method}
+\frametitle{Numerical Model : Calculation Method}
 The SINDA{\textbackslash}G  lumped capacitance tool solves a thermal circuit, for which 
 conducting nodes may be of four types corresponding to the four modes of heat 
 transfer. Nodes are connected by conduction, convection, radiation, and mass 
@@ -80,12 +59,11 @@ flow heat transfer links. In the SINDA{\textbackslash}G engine, these are repres
 
 
 \begin{frame}[ctb!]
-  \frametitle{SINDA{\textbackslash}G Geometries}
+  \frametitle{Numerical Model : SINDA{\textbackslash}G Geometries}
 
 Two SINDA{\textbackslash}G model geometries have been used in this benchmark.  
 \begin{itemize}
-  \item{Single Drift} In the single drift geometry, there is a distant fixed boundary condition and one waste tunnel is modeled with a continuous, cylindrical heat source of infinite length. The linear heat source in $[\frac{W}{m}]$ is modeled as if it is spread azimuthally over the surface of the drift tunnel.  
-  \item{Multiple Drift} As llustrated in Figure \ref{fig:sindageom}, an infinite array of identical single-drift heat sources is modeled, by assuming one-half of a storage tunnel with a reflective boundary condition at a vertical plane midway between drifts. 
+  \item{\textbf{Single Drift}} In the single drift geometry, there is a distant fixed boundary condition and one waste tunnel is modeled with a continuous, cylindrical heat source of infinite length. The linear heat source in $[\frac{W}{m}]$ is modeled as if it is spread azimuthally over the surface of the drift tunnel.  
+  \item{\textbf{Multiple Drift}} As llustrated in Figure \ref{fig:sindageom}, an infinite array of identical single-drift heat sources is modeled, by assuming one-half of a storage tunnel with a reflective boundary condition at a vertical plane midway between drifts. 
 \end{itemize}
-
 \end{frame}
